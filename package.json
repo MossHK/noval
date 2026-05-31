@@ -1,8 +1,16 @@
 {
   "name": "open-script-studio",
   "version": "0.1.0",
-  "description": "A small open-source script adaptation studio for turning story references into production-ready plans.",
+  "description": "Self-hosted AI script adaptation studio for turning novels, story notes, and worldbuilding references into production-ready scripts and handoff packages.",
   "main": "src/server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MossHK/noval.git"
+  },
+  "homepage": "https://github.com/MossHK/noval#readme",
+  "bugs": {
+    "url": "https://github.com/MossHK/noval/issues"
+  },
   "scripts": {
     "start": "node src/server.js",
     "check": "node --check src/server.js && node --check src/script_studio.js && node --check public/script-studio-assets/app.js",
