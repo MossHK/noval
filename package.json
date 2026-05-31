@@ -1,0 +1,27 @@
+{
+  "name": "open-script-studio",
+  "version": "0.1.0",
+  "description": "A small open-source script adaptation studio for turning story references into production-ready plans.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "check": "node --check src/server.js && node --check src/script_studio.js && node --check public/script-studio-assets/app.js",
+    "scan:secrets": "! rg -n \"(sk-[A-Za-z0-9_-]{20,}|ANTHROPIC_API_KEY=(sk-ant-[A-Za-z0-9_-]+|[A-Za-z0-9_-]{40,})|OPENAI_API_KEY=sk-[A-Za-z0-9_-]{20,}|BEGIN ([R]SA|[O]PENSSH|[P]RIVATE)|p[o]stgresql://|m[o]ngodb://|token\\\\.[p]ixdance|128\\\\.[2]41|[p]ixdances|50[9]0)\" . --glob '!node_modules/**' --glob '!package-lock.json'"
+  },
+  "keywords": [
+    "script",
+    "story",
+    "adaptation",
+    "screenwriting",
+    "anthropic",
+    "openai"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^2.1.1",
+    "yauzl": "^3.2.0"
+  }
+}

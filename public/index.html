@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#111018;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>Open Script Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/script-studio-assets/styles.css">
+</head>
+<body style="background:#111018;">
+<main class="script-studio-shell" data-script-studio>
+    <header class="studio-header">
+        <div>
+            <p class="studio-kicker" data-studio-i18n="header.kicker">Open Script Studio</p>
+            <h1 data-studio-i18n="header.title">Script Studio</h1>
+            <p class="studio-subtitle" data-studio-i18n="header.subtitle">Transform story drafts and reference bibles into original, overseas-ready drama concepts.</p>
+        </div>
+        <div class="header-actions">
+            <div class="lang-switch" role="group" aria-label="Language">
+                <button class="lang-btn active" type="button" data-lang="en">EN</button>
+                <button class="lang-btn" type="button" data-lang="zh">中文</button>
+                <button class="lang-btn" type="button" data-lang="ja">日本語</button>
+                <button class="lang-btn" type="button" data-lang="es">ES</button>
+            </div>
+            <button id="saveBtn" class="button secondary" type="button">
+                <i class="fas fa-save"></i>
+                <span data-studio-i18n="action.save">Save</span>
+            </button>
+            <button id="resetBtn" class="button ghost" type="button">
+                <i class="fas fa-eraser"></i>
+                <span data-studio-i18n="action.clear">Clear</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="studio-grid">
+        <aside class="settings-panel">
+            <section class="panel-block">
+                <div class="panel-title">
+                    <i class="fas fa-sliders-h"></i>
+                    <h2 data-studio-i18n="settings.title">Creative Direction</h2>
+                </div>
+                <div class="field-grid">
+                    <label class="field">
+                        <span data-studio-i18n="settings.market">Target Market</span>
+                        <select id="targetMarket">
+                            <option value="north_america" data-studio-i18n="market.north_america">North America</option>
+                            <option value="europe" data-studio-i18n="market.europe">Europe</option>
+                            <option value="global" data-studio-i18n="market.global">Global English</option>
+                            <option value="custom" data-studio-i18n="market.custom">Custom</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span data-studio-i18n="settings.level">Adaptation Level</span>
+                        <select id="adaptationLevel">
+                            <option value="light" data-studio-i18n="level.light">Light: keep original flavor</option>
+                            <option value="medium" selected data-studio-i18n="level.medium">Medium: localized packaging</option>
+                            <option value="heavy" data-studio-i18n="level.heavy">Heavy: rebuild the world</option>
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span data-studio-i18n="settings.genre">Genre</span>
+                        <input id="genre" type="text" value="Urban fantasy, revenge, comeback">
+                    </label>
+                    <label class="field">
+                        <span data-studio-i18n="settings.audience">Audience</span>
+                        <input id="audience" type="text" value="Overseas short drama and comic-drama viewers">
+                    </label>
+                    <label class="field field-wide">
+                        <span data-studio-i18n="settings.tone">Tone</span>
+                        <input id="tone" type="text" value="Cinematic, hook-driven, fast-paced, emotionally direct">
+                    </label>
+                    <label class="field field-wide">
+                        <span data-studio-i18n="settings.notes">Extra Notes</span>
+                        <textarea id="notes" rows="3" data-studio-i18n-placeholder="settings.notesPlaceholder" placeholder="Example: Westernize names, keep a cultivation-like ranking, make skills feel dark-fantasy."></textarea>
+                    </label>
+                </div>
+            </section>
+
+            <section class="panel-block">
+                <div class="panel-title">
+                    <i class="fas fa-layer-group"></i>
+                    <h2 data-studio-i18n="sources.title">Reference Sources</h2>
+                </div>
+                <div class="source-list">
+                    <article class="source-card" data-source-card="plot">
+                        <div class="source-head">
+                            <div>
+                                <strong data-studio-i18n="source.plot">Main Plot Reference</strong>
+                                <span data-studio-i18n="source.plotHint">Plot, conflict, hooks</span>
+                            </div>
+                            <label class="file-pill">
+                                <i class="fas fa-upload"></i>
+                                <span data-studio-i18n="action.upload">Upload</span>
+                                <input type="file" data-source-file="plot" accept=".txt,.md,.markdown,.json,.docx,.epub">
+                            </label>
+                        </div>
+                        <textarea data-source-text="plot" rows="8" data-studio-i18n-placeholder="source.plotPlaceholder" placeholder="Paste the main story or novel excerpt..."></textarea>
+                        <small data-source-count="plot">0</small>
+                    </article>
+
+                    <article class="source-card" data-source-card="characters">
+                        <div class="source-head">
+                            <div>
+                                <strong data-studio-i18n="source.characters">Character Reference</strong>
+                                <span data-studio-i18n="source.charactersHint">Optional; empty fields are generated for the audience</span>
+                            </div>
+                            <label class="file-pill">
+                                <i class="fas fa-upload"></i>
+                                <span data-studio-i18n="action.upload">Upload</span>
+                                <input type="file" data-source-file="characters" accept=".txt,.md,.markdown,.json,.docx,.epub">
+                            </label>
+                        </div>
+                        <textarea data-source-text="characters" rows="7" data-studio-i18n-placeholder="source.charactersPlaceholder" placeholder="Optional: paste bios or another character bible; leave blank to generate."></textarea>
+                        <small data-source-count="characters">0</small>
+                    </article>
+
+                    <article class="source-card" data-source-card="world">
+                        <div class="source-head">
+                            <div>
+                                <strong data-studio-i18n="source.world">World / Skill Reference</strong>
+                                <span data-studio-i18n="source.worldHint">Optional; empty fields are generated for the audience</span>
+                            </div>
+                            <label class="file-pill">
+                                <i class="fas fa-upload"></i>
+                                <span data-studio-i18n="action.upload">Upload</span>
+                                <input type="file" data-source-file="world" accept=".txt,.md,.markdown,.json,.docx,.epub">
+                            </label>
+                        </div>
+                        <textarea data-source-text="world" rows="7" data-studio-i18n-placeholder="source.worldPlaceholder" placeholder="Optional: paste worldbuilding, skills, props, or factions; leave blank to generate."></textarea>
+                        <small data-source-count="world">0</small>
+                    </article>
+                </div>
+            </section>
+        </aside>
+
+        <section class="result-panel">
+            <div class="run-panel">
+                <div>
+                    <h2 id="statusTitle" data-studio-i18n="status.idleTitle">Waiting for Sources</h2>
+                    <p id="statusText" data-studio-i18n="status.idleText">A main plot is enough; missing characters and world rules will be generated for the target audience.</p>
+                </div>
+                <div class="run-actions">
+                    <button id="generateBtn" class="button primary" type="button">
+                        <i class="fas fa-magic"></i>
+                        <span data-studio-i18n="action.generate">Generate Plan</span>
+                    </button>
+                    <button id="exportHandoffBtn" class="button secondary" type="button" disabled>
+                        <i class="fas fa-share-square"></i>
+                        <span data-studio-i18n="action.exportHandoff">Export Handoff</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="progress-shell">
+                <div class="progress-track">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <span id="statusBadge" class="status-badge">idle</span>
+            </div>
+
+            <nav class="result-tabs" aria-label="Script Studio result tabs">
+                <button type="button" class="tab-btn active" data-tab="overview" data-studio-i18n="tab.overview">Overview</button>
+                <button type="button" class="tab-btn" data-tab="mapping" data-studio-i18n="tab.mapping">Mapping</button>
+                <button type="button" class="tab-btn" data-tab="characters" data-studio-i18n="tab.characters">Characters</button>
+                <button type="button" class="tab-btn" data-tab="world" data-studio-i18n="tab.world">World</button>
+                <button type="button" class="tab-btn" data-tab="beats" data-studio-i18n="tab.beats">Beats</button>
+                <button type="button" class="tab-btn" data-tab="script" data-studio-i18n="tab.script">Full Script</button>
+                <button type="button" class="tab-btn" data-tab="drama" data-studio-i18n="tab.drama">Production Handoff</button>
+            </nav>
+
+            <div id="resultEmpty" class="empty-state">
+                <i class="fas fa-feather-alt"></i>
+                <h3 data-studio-i18n="empty.title">No plan yet</h3>
+                <p data-studio-i18n="empty.text">Adaptation strategy, full script, character bible, world rules, and production handoff prompts will appear here.</p>
+            </div>
+            <div id="resultContent" class="result-content hidden"></div>
+
+            <section class="export-panel hidden" id="exportPanel">
+                <div class="export-head">
+                    <h3 data-studio-i18n="export.title">Production Handoff</h3>
+                    <div class="export-actions">
+                        <button id="copyExportBtn" class="mini-button" type="button">
+                            <i class="fas fa-copy"></i>
+                            <span data-studio-i18n="action.copy">Copy</span>
+                        </button>
+                        <button id="saveHandoffBtn" class="mini-button accent" type="button">
+                            <i class="fas fa-save"></i>
+                            <span data-studio-i18n="action.saveHandoff">Save Handoff</span>
+                        </button>
+                    </div>
+                </div>
+                <textarea id="exportText" rows="8" readonly></textarea>
+            </section>
+
+            <section class="log-panel">
+                <div class="panel-title compact">
+                    <i class="fas fa-list"></i>
+                    <h2 data-studio-i18n="log.title">Progress</h2>
+                </div>
+                <div id="logList" class="log-list"></div>
+            </section>
+        </section>
+    </section>
+</main>
+
+<script src="/script-studio-assets/app.js" defer></script>
+</body>
+</html>
