@@ -14,7 +14,7 @@
   "scripts": {
     "start": "node src/server.js",
     "check": "node --check src/server.js && node --check src/script_studio.js && node --check public/script-studio-assets/app.js",
-    "scan:secrets": "! rg -n \"(sk-[A-Za-z0-9_-]{20,}|ANTHROPIC_API_KEY=(sk-ant-[A-Za-z0-9_-]+|[A-Za-z0-9_-]{40,})|OPENAI_API_KEY=sk-[A-Za-z0-9_-]{20,}|BEGIN ([R]SA|[O]PENSSH|[P]RIVATE)|p[o]stgresql://|m[o]ngodb://|token\\\\.[p]ixdance|128\\\\.[2]41|[p]ixdances|50[9]0)\" . --glob '!node_modules/**' --glob '!package-lock.json'"
+    "scan:secrets": "! rg -n \"(sk-[A-Za-z0-9_-]{20,}|sk-ant-[A-Za-z0-9_-]{20,}|(ghp|gho|ghu|ghs|ghr|github_pat)_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16}|BEGIN ([R]SA|[D]SA|[E]C|[O]PENSSH|[P]RIVATE) KEY|p[o]stgres(ql)?://|m[o]ngodb://|m[y]sql://|r[e]dis://|https?://[^[:space:]\\\"'<>/@]+:[^[:space:]\\\"'<>/@]+@)\" . --glob '!node_modules/**' --glob '!package-lock.json'"
   },
   "keywords": [
     "script",
